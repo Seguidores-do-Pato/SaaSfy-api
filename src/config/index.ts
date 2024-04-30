@@ -6,3 +6,5 @@ dotenv.config({
 });
 
 export const PORT = Number(process.env.PORT) || 8000;
+export const MONGO_CONNECTION = process.env.MONGO_CONNECTION_URL || '';
+export const SECRET = process.env.SECRET || '';

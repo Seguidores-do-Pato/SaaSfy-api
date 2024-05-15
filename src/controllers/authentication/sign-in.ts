@@ -16,7 +16,7 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
         const expectedHash = authentication(user?.authentication?.salt, password);
 
         if (user?.authentication?.password !== expectedHash) {
-            return res.sendStatus(403);
+            return res.sendStatus(400);
         }
 
         const salt = random();
@@ -31,6 +31,6 @@ export const signIn = async (req: Request, res: Response, next: NextFunction) =>
         return res.status(200).json(responseUser).end();
     } catch (error: any) {
         logging.error(error.message);
-        return res.sendStatus(500);
+        return res.sendStatus(401);
     }
 };

@@ -5,7 +5,9 @@ const productSchema = new Schema(
     {
         _id: { type: String, default: uuidv4 },
         name: { type: String, required: true },
-        owner: { type: Schema.Types.ObjectId, ref: 'User', required: true }
+        version: { type: String, required: true },
+        description: { type: String, required: true },
+        owner: { type: String, ref: 'User', required: true }
     },
     {
         timestamps: true

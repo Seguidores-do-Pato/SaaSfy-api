@@ -27,6 +27,6 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
         return res.status(201).json(user).end();
     } catch (error: any) {
         logging.error(error.message);
-        return res.sendStatus(500);
+        return res.sendStatus(400);
     }
 };

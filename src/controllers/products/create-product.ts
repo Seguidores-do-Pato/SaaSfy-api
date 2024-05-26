@@ -5,12 +5,14 @@ import { z } from 'zod';
 
 const dataValidation = z.object({
     name: z.string(),
+    version: z.string().default('1.0.0'),
+    description: z.string().min(15).max(255),
     owner: z.string()
 });
 
 export const registerProduct = async (req: Request, res: Response) => {
     try {
-        const { name, owner } = dataValidation.parse(req.body);
+        const { name, owner, description, version } = dataValidation.parse(req.body);
 
         const user = await getUserById(owner);
 
@@ -21,6 +23,8 @@ export const registerProduct = async (req: Request, res: Response) => {
 
         const newProduct = await createProduct({
             name,
+            description,
+            version,
             owner: user
         });
 

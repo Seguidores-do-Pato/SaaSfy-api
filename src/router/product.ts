@@ -1,5 +1,4 @@
 import express from 'express';
-
 import { deleteProduct, listProducts, registerProduct, updateProduct } from '../controllers/products';
 import { isAuthenticated, isOwner } from '../middleware/authHandler';
 

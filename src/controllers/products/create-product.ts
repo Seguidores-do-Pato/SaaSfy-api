@@ -7,12 +7,16 @@ const dataValidation = z.object({
     name: z.string(),
     version: z.string().default('1.0.0'),
     description: z.string().min(15).max(255),
-    owner: z.string()
+    owner: z.string(),
+    price: z.number().default(1),
+    category: z.string().default('Automation'),
+    available: z.boolean().default(false),
+    features: z.string().array()
 });
 
 export const registerProduct = async (req: Request, res: Response) => {
     try {
-        const { name, owner, description, version } = dataValidation.parse(req.body);
+        const { name, owner, description, version, available, category, features, price } = dataValidation.parse(req.body);
 
         const user = await getUserById(owner);
 
@@ -25,7 +29,11 @@ export const registerProduct = async (req: Request, res: Response) => {
             name,
             description,
             version,
-            owner: user
+            owner: user,
+            price,
+            category,
+            available,
+            features
         });
 
         return res.status(201).json(newProduct).end();

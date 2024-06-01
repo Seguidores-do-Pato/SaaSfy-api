@@ -7,7 +7,12 @@ const productSchema = new Schema(
         name: { type: String, required: true },
         version: { type: String, required: true },
         description: { type: String, required: true },
-        owner: { type: String, ref: 'User', required: true }
+        owner: { type: String, ref: 'User', required: true },
+        price: { type: Number, required: true },
+        category: { type: String, required: true },
+        images: [{ type: String }],
+        available: { type: Boolean, default: true },
+        features: [{ type: String }]
     },
     {
         timestamps: true

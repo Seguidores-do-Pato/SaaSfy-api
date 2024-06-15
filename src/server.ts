@@ -22,7 +22,8 @@ const main = async () => {
 
     app.use(compression());
     app.use(cookieParser());
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({ limit: '10mb' }));
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(loggingHandler);
     app.use('/', router());
     app.use(routeNotFound);
